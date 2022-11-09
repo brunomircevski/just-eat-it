@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace JEI.Models; 
 
-public class LoginUserForm 
+public class LoginUser
 {
     [Required]
     [EmailAddress]
@@ -12,13 +12,14 @@ public class LoginUserForm
 
     [Required]
     [DataType(DataType.Password)]
-    [Display(Name = "Hasło")]
+    [Display(Name = "Password")]
     [MaxLength(100)]
+    [MinLength(8)]
     public string Password { get; set; }
 
-    [Required]
     [DataType(DataType.Password)]
-    [Display(Name = "Powtórz Hasło")]
+    [Display(Name = "Repeat Password")]
     [MaxLength(100)]
+    [MinLength(8)]
     public string Password2 { get; set; }
 }

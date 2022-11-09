@@ -18,7 +18,7 @@ public class User
     [MaxLength(100)]
     public string PasswordHash { get; set; }
 
-    //[Required]
+    [Required]
     public byte[] Salt { get; set; }
 
     public bool isAdmin { get; set; }

@@ -3,6 +3,7 @@ using System;
 using JEI.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JEI.Migrations
 {
     [DbContext(typeof(MysqlDB))]
-    partial class MysqlDBModelSnapshot : ModelSnapshot
+    [Migration("20221108221206_UpdatedSalt")]
+    partial class UpdatedSalt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
