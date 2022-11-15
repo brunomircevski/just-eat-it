@@ -57,7 +57,7 @@ public class All_Recipes
         if ((source.Length == 0) || (target.Length == 0)) return 0.0;
         if (source == target) return 1.0;
 
-        int stepsToSame = LevenshteinDistance(source, target);
+        int stepsToSame = Similarity(source, target);
         return (1.0 - ((double)stepsToSame / (double)Math.Max(source.Length, target.Length)));
     }
 
