@@ -18,6 +18,7 @@ public class All_Recipes
         Custom_Recipes.Clear();
         foreach(Recipe recipe in Recipes)
         {
+            /*  POPSUŁEM bo zmieniłem model i nie wiem o co chodziło
             foreach(string str in recipe.Diet)
             {
                 if(str == diet)
@@ -25,6 +26,7 @@ public class All_Recipes
                     Custom_Recipes.Add(recipe);
                 }
             }
+            */
         }
     }
     public static int Similarity(string source, string target)
