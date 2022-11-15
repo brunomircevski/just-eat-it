@@ -16,6 +16,7 @@ public class Ingredient
      myslalem ze rzeczy typu warzywa,owoce itp. tylko nwm czy to potrzebne w ogole tbh xdxdxd
      */
 
+
     public float Calories_per_100_g { get; set; }
 
     public List<Recipe> Recipes { get; set; }
