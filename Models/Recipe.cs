@@ -13,6 +13,7 @@ public class Recipe
     public string Recipe_Manual { get; set; }
 
     public List<string> Diet { get; set; }
+
     /*byle co pierwsze z googla
     Dieta śródziemnomorska
     Dieta fleksitariańska
@@ -21,6 +22,7 @@ public class Recipe
     Dieta wegańska
     Dieta peskatariańska
     Dieta ketogeniczna
+    Dieta wegetarianska
     takie znalazlem*/
 
     public List<Ingredient> Ingredients { get; set; }
