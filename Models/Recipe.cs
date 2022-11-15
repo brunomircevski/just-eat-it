@@ -8,11 +8,20 @@ public class Recipe
     [Required]
     public int Id { get; set; }
 
+    [Required]
+    [MaxLength(200)]
+    [MinLength(3)]
     public string Name { get; set; }
 
-    public string Recipe_Manual { get; set; }
+    [MaxLength(5000)]
+    public string Description { get; set; }
 
-    public List<string> Diet { get; set; }
+    [MaxLength(5000)]
+    public string Manual { get; set; }
+
+    public List<RecipeCategory> Categories { get; set; }
+
+    //Wegańskie, wegetariańskie, ale też np obiad, kolacja itp, kategorie są jednocześnie tagami do wyszukiwania
 
     /*byle co pierwsze z googla
     Dieta śródziemnomorska
@@ -27,9 +36,11 @@ public class Recipe
 
     public List<Ingredient> Ingredients { get; set; }
 
-    public List<float> Weights { get; set; }
+    [Range(0,100000)]
+    public float CaloriesPerServing { get; set; }
 
-    public float Calories = 0;
+    /* TO TRZEBA INACZEJ ZROBIĆ, nie  da się tak do bazy zapisać
+    public List<float> Weights { get; set; }
 
     public void Calculate_Calories()
     {
@@ -40,18 +51,5 @@ public class Recipe
             Calories += ing.Calories_per_100_g * Weights[i] / 100;
         }
     }
-    public void Change_Weight(int index, int new_weight )
-    {
-        Weights[index] = new_weight;
-    }
-    public void Delete_Ingredient(int index)
-    {
-        Ingredients.RemoveAt(index);
-        Weights.RemoveAt(index);
-    }
-    public void Add_Ingredient(Ingredient ing, float weight)
-    {
-        Ingredients.Add(ing);
-        Weights.Add(weight);
-    }
+    */
 }
