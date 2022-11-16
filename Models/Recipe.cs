@@ -19,20 +19,7 @@ public class Recipe
     [MaxLength(5000)]
     public string Manual { get; set; }
 
-    public List<RecipeCategory> Categories { get; set; }
-
-    //Wegańskie, wegetariańskie, ale też np obiad, kolacja itp, kategorie są jednocześnie tagami do wyszukiwania
-
-    /*byle co pierwsze z googla
-    Dieta śródziemnomorska
-    Dieta fleksitariańska
-    Dieta DASH
-    Dieta wolumetryczna
-    Dieta wegańska
-    Dieta peskatariańska
-    Dieta ketogeniczna
-    Dieta wegetarianska
-    takie znalazlem*/
+    public List<Category> Categories { get; set; }
 
     public List<Ingredient> Ingredients { get; set; }
 

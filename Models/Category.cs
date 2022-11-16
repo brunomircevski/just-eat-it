@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JEI.Models; 
 
-public class IngredientCategory
+public class Category
 {
     [Required]
     public int Id { get; set; }
@@ -13,5 +13,5 @@ public class IngredientCategory
     [MinLength(3)]
     public string Name { get; set; }
 
-    public List<Ingredient> Ingredients { get; set; }
+    public List<Recipe> Recipes { get; set; }
 }
