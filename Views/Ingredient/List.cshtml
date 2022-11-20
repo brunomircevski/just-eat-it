@@ -1,0 +1,39 @@
+@model List<Ingredient>
+@{
+    ViewData["Title"] = "Ingredients";
+}
+
+<div class="text-center">    
+    <h1 class="display-4">All Ingredients</h1>
+    <section>
+        @foreach(Ingredient i in Model) {
+            <article class="text-start">
+                <h4>@i.Name</h4>
+                <p>
+                    @if(i.Description is not null) {
+                        @if(i.Description.Length > 200) { 
+                            @(i.Description.Substring(0,150)+"... ");
+                            <a asp-controller="Ingredient" asp-action="Details" asp-route-id="@i.Id"> [read more]</a> 
+                        } 
+                        else { @i.Description; }
+                    }
+                </p>
+                <b>In @Translate.Units(i.Unit)</b><br>
+                @if(@i.Calories is not null) { <text>Energy: @i.Calories kcal<br></text>; } 
+                @if(@i.Fats is not null) { <text>Fats: @i.Fats g<br></text>; }
+                @if(@i.Carbs is not null) { <text>Carbs: @i.Carbs g<br></text>; }
+                @if(@i.Proteins is not null) { <text>Proteins: @i.Proteins g<br></text>; }
+                @if(@i.Fiber is not null) { <text>Fiber: @i.Fiber g<br></text>; }
+                @if(@i.Salt is not null ) { <text>Salt: @i.Salt g<br></text>; }
+
+                <a asp-controller="Ingredient" asp-action="Details" asp-route-id="@i.Id">Details</a>
+                @if(User.IsInRole("admin")) {
+                    <text> | </text>
+                    <a asp-controller="Ingredient" asp-action="Edit" asp-route-id="@i.Id">Edit</a> <text> | </text>
+                    <a asp-controller="Ingredient" asp-action="Delete" asp-route-id="@i.Id">Delete</a> 
+                }
+            </article>
+            <hr>
+        }
+    </section>
+</div>
