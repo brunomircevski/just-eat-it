@@ -66,26 +66,21 @@ public class AccountController : Controller
         return View();
     }
 
-    public IActionResult Register()
-    {
-        return View();
-    }
-
     [HttpPost]
     public IActionResult Register(LoginUser u)
     {
-        if (!ModelState.IsValid) return View();
+        if (!ModelState.IsValid) return View("Login");
 
         if (DB.Users.Where(x => x.Email == u.Email).FirstOrDefault() is not null) 
         {
             ViewBag.msg = "This email is alredy registered.";
-            return View();
+            return View("Login");
         }
 
         if (u.Password != u.Password2) 
         {
             ViewBag.msg = "Passwords are not the same";
-            return View();
+            return View("Login");
         }
 
         User user = new User();

@@ -9,7 +9,7 @@
 </div>
 <div>
     Email: @user.Email <br>
-    @if(user.isAdmin) { <text>Admin<br></text>}
+    @if(user.IsAdmin) { <text>Admin<br></text>}
     <a asp-controller="Account" asp-action="ChangePassword">Change password</a><br>
     <a asp-controller="Account" asp-action="DeleteAccount">Delete account</a>
 </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - E-Dziennik</title>
+    <title>@ViewData["Title"] - Just Eat It</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/project.styles.css" asp-append-version="true" />
@@ -19,8 +19,23 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Admin stuff</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Recipes
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="Recipe" asp-action="Add">Add Recipe</a></li>
+                                <li><a class="dropdown-item" asp-controller="Recipe" asp-action="List">Edit Recipe</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Ingredients
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="Ingredient" asp-action="Add">Add Ingredient</a></li>
+                                <li><a class="dropdown-item" asp-controller="Ingredient" asp-action="List">Edit Ingredient</a></li>
+                            </ul>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">

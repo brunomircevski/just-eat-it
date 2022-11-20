@@ -56,7 +56,7 @@ namespace JEI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<float?>("CaloriesPerUnit")
+                    b.Property<float?>("Calories")
                         .HasColumnType("float");
 
                     b.Property<float?>("Carbs")
@@ -69,6 +69,9 @@ namespace JEI.Migrations
                     b.Property<float?>("Fats")
                         .HasColumnType("float");
 
+                    b.Property<float?>("Fiber")
+                        .HasColumnType("float");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -77,7 +80,7 @@ namespace JEI.Migrations
                     b.Property<float?>("Proteins")
                         .HasColumnType("float");
 
-                    b.Property<float?>("Sugars")
+                    b.Property<float?>("Salt")
                         .HasColumnType("float");
 
                     b.Property<int>("Unit")

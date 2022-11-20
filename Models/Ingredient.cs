@@ -17,20 +17,29 @@ public class Ingredient
     [MaxLength(5000)]
     public string Description { get; set; }
 
-    [Range(0,10000)]
-    public float ?CaloriesPerUnit { get; set; }
-
     [Required]
     public Units Unit { get; set; }
 
     public List<RecipeIngredient> RecipeIngredients { get; set; }
 
+    //Wszystko poniżej na jednostkę
+
+    [Range(0,10000)]
+    public float ?Calories { get; set; }
+
+    [Range(0,10000)]
     public float ?Carbs { get; set; }
 
+    [Range(0,10000)]
     public float ?Fats { get; set; }
 
-    public float ?Sugars { get; set; }
+    [Range(0,10000)]
+    public float ?Fiber { get; set; }
 
+    [Range(0,10000)]
+    public float ?Salt { get; set; }
+
+    [Range(0,10000)]
     public float ?Proteins { get; set; }
 
 }
