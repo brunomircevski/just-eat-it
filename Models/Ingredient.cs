@@ -18,19 +18,19 @@ public class Ingredient
     public string Description { get; set; }
 
     [Range(0,10000)]
-    public float CaloriesPerUnit { get; set; }
+    public float ?CaloriesPerUnit { get; set; }
 
     [Required]
     public Units Unit { get; set; }
 
-    public List<Recipe> Recipes { get; set; }
+    public List<RecipeIngredient> RecipeIngredients { get; set; }
 
-    public float Carbs { get; set; }
+    public float ?Carbs { get; set; }
 
-    public float Fats { get; set; }
+    public float ?Fats { get; set; }
 
-    public float Sugars { get; set; }
+    public float ?Sugars { get; set; }
 
-    public float Proteins { get; set; }
+    public float ?Proteins { get; set; }
 
 }

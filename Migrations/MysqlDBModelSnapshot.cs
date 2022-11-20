@@ -19,34 +19,35 @@ namespace JEI.Migrations
                 .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("IngredientIngredientCategory", b =>
+            modelBuilder.Entity("CategoryRecipe", b =>
                 {
                     b.Property<int>("CategoriesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IngredientsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoriesId", "IngredientsId");
-
-                    b.HasIndex("IngredientsId");
-
-                    b.ToTable("IngredientIngredientCategory");
-                });
-
-            modelBuilder.Entity("IngredientRecipe", b =>
-                {
-                    b.Property<int>("IngredientsId")
                         .HasColumnType("int");
 
                     b.Property<int>("RecipesId")
                         .HasColumnType("int");
 
-                    b.HasKey("IngredientsId", "RecipesId");
+                    b.HasKey("CategoriesId", "RecipesId");
 
                     b.HasIndex("RecipesId");
 
-                    b.ToTable("IngredientRecipe");
+                    b.ToTable("CategoryRecipe");
+                });
+
+            modelBuilder.Entity("JEI.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("JEI.Models.Ingredient", b =>
@@ -55,13 +56,29 @@ namespace JEI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<float>("CaloriesPerUnit")
+                    b.Property<float?>("CaloriesPerUnit")
+                        .HasColumnType("float");
+
+                    b.Property<float?>("Carbs")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(5000)
+                        .HasColumnType("varchar(5000)");
+
+                    b.Property<float?>("Fats")
                         .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
+
+                    b.Property<float?>("Proteins")
+                        .HasColumnType("float");
+
+                    b.Property<float?>("Sugars")
+                        .HasColumnType("float");
 
                     b.Property<int>("Unit")
                         .HasColumnType("int");
@@ -71,29 +88,13 @@ namespace JEI.Migrations
                     b.ToTable("Ingredients");
                 });
 
-            modelBuilder.Entity("JEI.Models.IngredientCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("IngredientCategories");
-                });
-
             modelBuilder.Entity("JEI.Models.Recipe", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<float>("CaloriesPerServing")
+                    b.Property<float?>("CaloriesPerServing")
                         .HasColumnType("float");
 
                     b.Property<string>("Description")
@@ -114,20 +115,22 @@ namespace JEI.Migrations
                     b.ToTable("Recipes");
                 });
 
-            modelBuilder.Entity("JEI.Models.RecipeCategory", b =>
+            modelBuilder.Entity("JEI.Models.RecipeIngredient", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("RecipeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                    b.Property<int>("IngredientId")
+                        .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<float>("Amount")
+                        .HasColumnType("float");
 
-                    b.ToTable("RecipeCategories");
+                    b.HasKey("RecipeId", "IngredientId");
+
+                    b.HasIndex("IngredientId");
+
+                    b.ToTable("RecipeIngredient");
                 });
 
             modelBuilder.Entity("JEI.Models.User", b =>
@@ -141,71 +144,36 @@ namespace JEI.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<bool>("IsAdmin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
+
+                    b.Property<DateTime?>("LastLoginDate")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<DateTime>("RegistrationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP()");
+
                     b.Property<byte[]>("Salt")
                         .IsRequired()
                         .HasColumnType("longblob");
-
-                    b.Property<bool>("isAdmin")
-                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("RecipeRecipeCategory", b =>
+            modelBuilder.Entity("CategoryRecipe", b =>
                 {
-                    b.Property<int>("CategoriesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RecipesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoriesId", "RecipesId");
-
-                    b.HasIndex("RecipesId");
-
-                    b.ToTable("RecipeRecipeCategory");
-                });
-
-            modelBuilder.Entity("IngredientIngredientCategory", b =>
-                {
-                    b.HasOne("JEI.Models.IngredientCategory", null)
-                        .WithMany()
-                        .HasForeignKey("CategoriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("JEI.Models.Ingredient", null)
-                        .WithMany()
-                        .HasForeignKey("IngredientsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("IngredientRecipe", b =>
-                {
-                    b.HasOne("JEI.Models.Ingredient", null)
-                        .WithMany()
-                        .HasForeignKey("IngredientsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("JEI.Models.Recipe", null)
-                        .WithMany()
-                        .HasForeignKey("RecipesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("RecipeRecipeCategory", b =>
-                {
-                    b.HasOne("JEI.Models.RecipeCategory", null)
+                    b.HasOne("JEI.Models.Category", null)
                         .WithMany()
                         .HasForeignKey("CategoriesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -216,6 +184,35 @@ namespace JEI.Migrations
                         .HasForeignKey("RecipesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("JEI.Models.RecipeIngredient", b =>
+                {
+                    b.HasOne("JEI.Models.Ingredient", "Ingredient")
+                        .WithMany("RecipeIngredients")
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JEI.Models.Recipe", "Recipe")
+                        .WithMany("RecipeIngredients")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ingredient");
+
+                    b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("JEI.Models.Ingredient", b =>
+                {
+                    b.Navigation("RecipeIngredients");
+                });
+
+            modelBuilder.Entity("JEI.Models.Recipe", b =>
+                {
+                    b.Navigation("RecipeIngredients");
                 });
 #pragma warning restore 612, 618
         }

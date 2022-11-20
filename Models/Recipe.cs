@@ -21,10 +21,10 @@ public class Recipe
 
     public List<Category> Categories { get; set; }
 
-    public List<Ingredient> Ingredients { get; set; }
+    public List<RecipeIngredient> RecipeIngredients { get; set; }
 
     [Range(0,100000)]
-    public float CaloriesPerServing { get; set; }
+    public float ?CaloriesPerServing { get; set; }
 
     //Zdjęcie jeszcze tu powinno być kiedyś
 

@@ -21,5 +21,8 @@ public class User
     [Required]
     public byte[] Salt { get; set; }
 
-    public bool isAdmin { get; set; }
+    public bool IsAdmin { get; set; }
+
+    public DateTime RegistrationDate { get; set; }
+    public DateTime ?LastLoginDate { get; set; }
 }

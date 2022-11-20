@@ -46,7 +46,10 @@ public class AccountController : Controller
         if (hash == user.PasswordHash)
         {
             string role = "user";
-            if(user.isAdmin) role = "admin";
+            if(user.IsAdmin) role = "admin";
+
+            user.LastLoginDate = DateTime.Now;
+            DB.SaveChanges();
 
             var claims = new List<Claim>() {
                 new Claim(ClaimTypes.Email, user.Email),

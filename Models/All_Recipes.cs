@@ -78,9 +78,9 @@ public class All_Recipes
     {
         foreach(Recipe recipe in Recipes)
         {
-            foreach(Ingredient ing in recipe.Ingredients)
+            foreach(RecipeIngredient ing in recipe.RecipeIngredients)
             {
-                if(ing.Name == ingredient)
+                if(ing.Ingredient.Name == ingredient)
                 {
                     Custom_Recipes.Add(recipe);
                 }
