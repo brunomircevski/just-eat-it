@@ -11,14 +11,14 @@
                 <h2 class="title">Log in</h2>
                 <div class="input-field">
                 <i class="fas fa-user"></i>
-                <input asp-for="Email" type="Email" placeholder="Email" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <input asp-for="Email" placeholder="Email" />
                 </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
                 <div class="input-field">
                 <i class="fas fa-lock"></i>
-                <input asp-for="Password" type="password" placeholder="Password" />
-                <span asp-validation-for="Password" class="text-danger"></span>
+                <input asp-for="Password" placeholder="Password" />
                 </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
                 <input type="submit" value="Log in" class="btn solid" />
                 <p class="social-text">Or Log in with </p>
                 <span class="text-danger">@ViewBag.msg</span>
@@ -42,8 +42,8 @@
                 <div class="input-field">
                 <i class="fas fa-user"></i>
                 <input asp-for="Email" type="Email" placeholder="Email" />
-                <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
                 <div class="input-field">
                 <i class="fas fa-envelope"></i>
                 <input input asp-for="Password" type="Password" placeholder="Password" />
@@ -51,11 +51,11 @@
                 <div class="input-field">
                 <i class="fas fa-lock"></i>
                 <input asp-for="Password2" type="Password" placeholder="Replace Password" />
-                 <span asp-validation-for="Password2" class="text-danger"></span>
                 </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
                 <input type="submit" class="btn" value="Sign up" />
                 <span class="text-danger">@ViewBag.msg</span>
-                <p class="social-text">Or Sign up się with</p>
+                <p class="social-text">Or Sign up with</p>
                 <div class="social-media">
                 <a href="#" class="social-icon">
                     <i class="fab fa-facebook-f"></i>

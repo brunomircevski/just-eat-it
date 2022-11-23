@@ -399,5 +399,8 @@ form.sign-in-form {
   }
 }
 
+.text-danger {
+  color: #dc3545!important;
+}
 
 

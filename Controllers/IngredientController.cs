@@ -56,7 +56,7 @@ public class IngredientController : Controller
             return RedirectToAction("Error", "Home", new { msg = "Sorry. Failed to fetch data from database." });
         }
 
-        if(ingredient is null) return RedirectToAction("List");
+        if (ingredient is null) return RedirectToAction("List");
 
         return View(ingredient);
     }
