@@ -26,11 +26,13 @@ public class Recipe
     [Range(0,100000)]
     public float ?CaloriesPerServing { get; set; }
 
-    //Zdjęcie jeszcze tu powinno być kiedyś
+    [MaxLength(200)]
+    public string ImageFileName { get; set; }
 
-    /* TO TRZEBA INACZEJ ZROBIĆ, nie  da się tak do bazy zapisać
-    public List<float> Weights { get; set; }
+    [NotMapped]
+    public IFormFile Image { get; set; }
 
+    /* 
     public void Calculate_Calories()
     {
         Calories = 0;
