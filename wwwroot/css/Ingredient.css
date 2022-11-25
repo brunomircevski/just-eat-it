@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;1,800&display=swap');
+
+	:root{
+	--bg1:#040406;
+	/*--bg2:#262626;*/
+	--bg2:#323234;
+	--boxShadow:#010203;
+	--Shadow1:#040406;
+	--Shadow2:#444446;
+	--SforIcon1:#2a3b2c;
+	--SforIcon2:#020205;
+	--font1: #e7e7e7;
+	--font2: #777;
+	--Primary: #66bb6a;
+	}
+	[data-theme="dark"]{
+	--bg1:#c2c2c4;
+	/*--bg2:#262626;*/
+	--bg2:#e2e2e4;
+	--boxShadow:#a1a1a3;
+	--Shadow1:#848486;
+	--Shadow2:#fcfcfe;
+	--SforIcon1:#ececee;
+	--SforIcon2:#8a8b8e;
+	--font1: #262626;;
+	--font2: #323234;
+	--Primary: #66bb6a;
+	}
+
+
+*{
+	font-family : 'Nunito', sans-serif;
+	margin: 0;
+	padding: 0;
+	color: var(--font1);
+}
+
+body
+{
+	background: linear-gradient(135deg, var(--bg1), var(--bg2));
+	font-size: 18px;
+}
+
+h1{
+	text-align: center;
+}
+.card{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 300px;
+	padding-left: 10px;
+	padding-right: 20px;
+	padding-top:20px ;
+	height: 610px;
+	font-size: 12px;
+	border-radius: 1rem;
+	border: 1px solid transparent;
+	background: linear-gradient(135deg, var(--bg2), var(--bg1));
+	box-shadow: 0 0 8x var(--boxShadow);
+	border-radius: 32px;
+}
+
+.card .card-text{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: #333;
+	height: 70px;
+}
+
+.card-text .name{
+	font-size: 17px;
+	font-weight: 500;
+}
+
+.card-text .description{
+	font-size: 10px;
+	font-weight: 300;
+	font-style: italic;
+}
+
+.card-text .unit{
+	margin-top: 10px;
+	font-size: 12px;
+	font-weight: 200;
+}
+
+
+.makro{
+	margin-top: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	width: 100%;
+	height: 300px;
+	background-color: rgba(255, 255, 255, 0.0);
+	
+}
+.makro .makro-element{
+	
+	width: 150px;
+	padding-top: 5px;
+	padding-bottom:5px;
+	padding-left: 7px;
+	margin-bottom: 10px;
+	background-color: rgba(255, 255, 255, 0.05);
+	border-radius: 30px;
+	box-shadow: inset 4px 4px 8px var(--Shadow1),
+				inset -4px -4px 8px var(--Shadow2);
+}
+
+.makro-element .weight{
+	
+	float: left;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	height: 30px;
+	width: 22%;
+	background: #f4f4f4;
+	color: #333;
+	border-radius: 50%;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+.makro-element .element{
+	
+	float: left;
+	font-weight: 700;
+	align-items: left;
+	text-align: left;
+	font-size: 9px;
+	width: 55%;
+	margin-left: 10px;
+	font-style: italic;
+}
+.makro-element .value{
+	
+	float: left;
+	align-items: left;
+	text-align: left;
+	font-size: 9px;
+	margin-left: 10px;
+	width: 55%;
+	color: var(--font1);
+}
+
+.options{
+	display:flex;
+	position: relative;
+	bottom: 0px;
+	width: 300px;
+	height: 100px;
+	margin-left: 40px;
+	
+	
+}
+
+.data{
+	margin: 20px;
+	background: linear-gradient(135deg, var(--bg2), var(--bg1));
+	position: relative;
+	align-items: center;
+	width: 50px;
+	height: 50px;
+	border-radius: 15px;
+	outline: none;
+	box-shadow: 4px 4px 8px var(--Shadow1),
+				-4px -4px 8px var(--Shadow2);
+	
+}
+
+
+.data:hover{
+	background: linear-gradient(185deg, var(--Shadow1) var(--Shadow2));
+	
+	box-shadow: inset -2px -2px 0px var(--font2),
+				inset 2px 2px 0px var(--Shadow1);
+}
+.data:hover i{
+	transform: scale(0.96);
+	color:rgba(38, 255, 0, 0.651);
+	text-shadow: 0px 0px 15px var(--Primary);
+
+}
+.data-d:hover i{
+	color:rgba(255, 0, 0, 0.651);
+	text-shadow: 0px 0px 15px #ce0029;
+}
+
+.data i{
+	position: relative;
+	top:17px;
+	justify-content: center;
+	display: flex;
+	color: var(--font2);
+	text-decoration: none;
+	
+}
+
+
+/*----------------------Dark mode-----------------------*/
+
+.theme-switch-wrapper {
+	position: fixed;
+	display: flex;
+	top: 40px; right: 40px;
+	padding: 15px 20px;
+	flex-direction: column;
+	
+  }
+
+  .theme-switch {
+	display: inline-block;
+	height: 34px;
+	position: relative;
+	width: 60px;
+	display: flex;
+	
+  }
+  
+  .theme-switch input {
+	display:none;
+  }
+  
+  .slider {
+	background-color: #ccc;
+	bottom: 0;
+	cursor: pointer;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transition: .4s;
+  }
+  
+  .slider:before {
+	background-color: #fff;
+	bottom: 4px;
+	content: "";
+	height: 26px;
+	left: 4px;
+	position: absolute;
+	transition: .4s;
+	width: 26px;
+  }
+  
+  input:checked + .slider {
+	background-color: #66bb6a;
+  }
+  
+  input:checked + .slider:before {
+	transform: translateX(26px);
+  }
+  
+  .slider.round {
+	border-radius: 34px;
+  }
+  
+  .slider.round:before {
+	border-radius: 50%;
+  }
+/*---------------------------------------------*/
+
