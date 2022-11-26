@@ -14,4 +14,9 @@ public class Category
     public string Name { get; set; }
 
     public List<Recipe> Recipes { get; set; }
+
+    [Required]
+    public Boolean Preferable { get; set; }
+
+    public List<User> PreferingUsers { get; set; }
 }
