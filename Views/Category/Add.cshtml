@@ -1,0 +1,29 @@
+@model Category
+@{
+    ViewData["Title"] = "Add Category";
+}
+
+<div class="text-center">
+    @if(ViewBag.msg is not null) {
+        string alertClass = "success";
+        if(ViewBag.error == true) alertClass = "danger";
+
+        <div class="alert alert-@alertClass alert-dismissible fade show" role="alert">
+            @ViewBag.msg
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <h1 class="display-4">Add Category</h1>
+    <form asp-controller="Category" asp-action="Add" method="post">
+        <label asp-for="Name"></label>
+        <input asp-for="Name"><br>
+        <span asp-validation-for="Name" class="text-danger"></span> <br>
+
+        <label asp-for="Preferable"></label>
+        <input asp-for="Preferable"><br>
+        <span asp-validation-for="Preferable" class="text-danger"></span> <br>
+
+        <button type="submit">Submit</button><br>
+    </form>
+</div>

@@ -24,8 +24,8 @@
                                 Recipes
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-controller="Recipe" asp-action="Add">Add Recipe</a></li>
-                                <li><a class="dropdown-item" asp-controller="Recipe" asp-action="List">Edit Recipe</a></li>
+                                <li><a class="dropdown-item" asp-controller="Recipe" asp-action="Add">Add new recipe</a></li>
+                                <li><a class="dropdown-item" asp-controller="Recipe" asp-action="List">Recipes List</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -33,8 +33,17 @@
                                 Ingredients
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-controller="Ingredient" asp-action="Add">Add Ingredient</a></li>
-                                <li><a class="dropdown-item" asp-controller="Ingredient" asp-action="List">Edit Ingredient</a></li>
+                                <li><a class="dropdown-item" asp-controller="Ingredient" asp-action="Add">Add new ingredient</a></li>
+                                <li><a class="dropdown-item" asp-controller="Ingredient" asp-action="List">Ingredients List</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categories
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="Category" asp-action="Add">Add new category</a></li>
+                                <li><a class="dropdown-item" asp-controller="Category" asp-action="List">Categories List</a></li>
                             </ul>
                         </li>
                     </ul>

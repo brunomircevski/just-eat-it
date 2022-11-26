@@ -15,6 +15,9 @@ public class Category
 
     public List<Recipe> Recipes { get; set; }
 
+    [NotMapped]
+    public int RecipesCount { get; set; }
+
     [Required]
     public Boolean Preferable { get; set; }
 

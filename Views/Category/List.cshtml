@@ -1,0 +1,46 @@
+@model List<Category>
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<div class="container">  
+    <h1>All Categories</h1>
+
+    @if(ViewBag.msg is not null) {
+        string alertClass = "success";
+        if(ViewBag.error == true) alertClass = "danger";
+
+        <div class="alert alert-@alertClass alert-dismissible fade show" role="alert">
+            @ViewBag.msg
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <table class="table table-striped mt-5">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Recipes Count</th>
+            @if(User.IsInRole("admin")) { <th scope="col">Preferable</th> }
+            <th scope="col">Action</th>
+        </tr>
+
+        @foreach(Category c in Model) {
+            <tr>
+                <td>@c.Name</td>
+                <td>@c.RecipesCount</td>
+                @if(User.IsInRole("admin")) { <td>@c.Preferable</td> }
+                <td>
+                    <a asp-controller="Category" asp-action="Recipes" asp-route-id="@c.Id">Recipes</a>
+                    @if(User.IsInRole("admin")) {
+                        <text> | </text>
+                        <a asp-controller="Category" asp-action="Delete" asp-route-id="@c.Id">Delete</a>
+                    } else if(c.Preferable) { 
+                        <text> | </text>
+                        <a asp-controller="Category" asp-action="Prefer" asp-route-id="@c.Id">Add to preferences</a>
+                    }
+                </td>
+            </tr>       
+        }
+        
+    </table>
+</div>
