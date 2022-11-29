@@ -32,6 +32,38 @@
 	padding: 0;
 	color: var(--font1);
 }
+/*-----------------*/
+
+
+  a.navbar-brand {
+	white-space: normal;
+	text-align: center;
+	word-break: break-all;
+  }
+
+  a:link{
+	text-decoration: none;
+  }
+
+  .border-top {
+	border-top: 1px solid #e5e5e5;
+  }
+  
+  .border-bottom {
+	border-bottom: 1px solid #e5e5e5;
+  }
+  
+  .box-shadow {
+	box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  }
+  
+  button.accept-policy {
+	font-size: 1rem;
+	line-height: inherit;
+  }
+  
+ 
+/*---------------*/
 
 header{
 	background-color: red;
@@ -41,37 +73,39 @@ footer{
 	color: var(--font1);
 	background-color: var(--bg1);
 	position: absolute;
-	bottom: -22px;
 	width: 100%;
 	height: 50px;
-	padding-top: 15px;
+	bottom: 0;
+	left: 0;
 }
 body
 {
+	min-height: 100%;
+	position: relative;
 	background: linear-gradient(135deg, var(--bg1), var(--bg2));
 	font-size: 18px;
-	padding-bottom: 30px;
+	
 }
 
-@media (min-width: 576px) {
-	.card {
-	  width: 300px;
-	}
-  }
+
 
 h1{
 	text-align: center;
 }
+
 .card{
-	display: flex;
+	background-color: red;
+	width: 350px;
+	height: 500px;
+
 	margin: 5px;
 	flex-direction: column;
 	align-items: center;
-	width: 300px;
+	
 	padding-left: 10px;
 	padding-right: 20px;
 	padding-top:20px ;
-	height: 610px;
+	
 	font-size: 12px;
 	border-radius: 1rem;
 	border: 1px solid transparent;
@@ -100,11 +134,10 @@ h1{
 }
 
 .card-text .unit{
-	margin-top: 10px;
+	margin-top: 5px;
 	font-size: 12px;
 	font-weight: 200;
 }
-
 
 .makro{
 	margin-top: 10px;
@@ -135,8 +168,8 @@ h1{
 	align-items: center;
 	display: flex;
 	justify-content: center;
-	height: 30px;
-	width: 22%;
+	height: 25px;
+	width: 25px;
 	background: #f4f4f4;
 	color: #333;
 	border-radius: 50%;
@@ -164,19 +197,34 @@ h1{
 	color: var(--font1);
 }
 
+@media (max-width: 575px) {
+	.makro-element{
+		width: 250px;
+		
+	}
+	.data i{
+		font-size: 20px;
+		top: 50px;
+	}
+  }
+
+.col{
+	display: flex;
+	justify-content: center;
+}
+
 .options{
 	display:flex;
 	position: relative;
+	justify-content: center;
 	bottom: 0px;
-	width: 300px;
+	width: 100%;
 	height: 100px;
-	margin-left: 40px;
-	
-	
+	margin-left: 10px;
 }
 
 .data{
-	margin: 20px;
+	margin: auto;
 	background: linear-gradient(135deg, var(--bg2), var(--bg1));
 	position: relative;
 	align-items: center;
@@ -208,12 +256,13 @@ h1{
 }
 
 .data i{
-	position: relative;
-	top:17px;
-	justify-content: center;
-	display: flex;
+	
+	position: absolute;
+	top: 35%; 
+	left: 30%;
+	font-size: 20px;
 	color: var(--font2);
-	text-decoration: none;
+	
 }
 
 

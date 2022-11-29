@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Ingredients";
 }
+
     <h1>All Ingredients</h1>
 
     @if(ViewBag.msg is not null) {
@@ -14,12 +15,12 @@
         </div>
     }
         <div class="card-container">
-            <div class="row">
+            <div class="row gy-3">
                 
                 @foreach(Ingredient i in Model) {
-                <div class="col-sm-6 col-md-3 col-lg-2">
+                <div class="col col-sm-6 col-md-4 col-lg-3 col-xl-3">
                     <div class="card">
-                        <div class="card-text">
+                         <div class="card-text">
                             <span class="name">@i.Name</span>
                                 
                             @if(i.Description is not null) {
@@ -93,13 +94,12 @@
                                             <a class="option" asp-controller="Ingredient" asp-action="Delete" asp-route-id="@i.Id"><i class="fa-solid fa-trash"></i></a> 
                                 </div>
                             }                              
-                        </div>     
+                        </div>   
                     </div>  
-                </div> 
-                    
-                        
+                </div>      
                 }  
-                
-            </div>  
+            </div>   
         </div>
+
+
 
