@@ -2,7 +2,6 @@
 
 	:root{
 	--bg1:#040406;
-	/*--bg2:#262626;*/
 	--bg2:#323234;
 	--boxShadow:#010203;
 	--Shadow1:#040406;
@@ -15,7 +14,6 @@
 	}
 	[data-theme="dark"]{
 	--bg1:#c2c2c4;
-	/*--bg2:#262626;*/
 	--bg2:#e2e2e4;
 	--boxShadow:#a1a1a3;
 	--Shadow1:#848486;
@@ -35,17 +33,38 @@
 	color: var(--font1);
 }
 
+header{
+	background-color: red;
+}
+
+footer{
+	color: var(--font1);
+	background-color: var(--bg1);
+	position: absolute;
+	bottom: -22px;
+	width: 100%;
+	height: 50px;
+	padding-top: 15px;
+}
 body
 {
 	background: linear-gradient(135deg, var(--bg1), var(--bg2));
 	font-size: 18px;
+	padding-bottom: 30px;
 }
+
+@media (min-width: 576px) {
+	.card {
+	  width: 300px;
+	}
+  }
 
 h1{
 	text-align: center;
 }
 .card{
 	display: flex;
+	margin: 5px;
 	flex-direction: column;
 	align-items: center;
 	width: 300px;
@@ -201,20 +220,17 @@ h1{
 
 /*----------------------Dark mode-----------------------*/
 
-.theme-switch-wrapper {
-	position: fixed;
+.theme-switch-wrapper{
 	display: flex;
-	top: 40px; right: 40px;
-	padding: 15px 20px;
-	flex-direction: column;
-	
-  }
+	align-items: center;
+
+}
 
   .theme-switch {
 	display: inline-block;
-	height: 34px;
+	height: 24px;
 	position: relative;
-	width: 60px;
+	width: 40px;
 	display: flex;
 	
   }
@@ -238,11 +254,11 @@ h1{
 	background-color: #fff;
 	bottom: 4px;
 	content: "";
-	height: 26px;
+	height: 16px;
 	left: 4px;
 	position: absolute;
 	transition: .4s;
-	width: 26px;
+	width: 16px;
   }
   
   input:checked + .slider {
@@ -250,7 +266,7 @@ h1{
   }
   
   input:checked + .slider:before {
-	transform: translateX(26px);
+	transform: translateX(16px);
   }
   
   .slider.round {

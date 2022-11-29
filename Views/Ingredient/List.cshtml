@@ -1,17 +1,7 @@
 @model List<Ingredient>
 @{
     ViewData["Title"] = "Ingredients";
-    Layout = "~/Views/Shared/_LayoutLista.cshtml";
 }
-
-<div class="theme-switch-wrapper">
-        <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider round"></div>
-      </label>
-</div>
-
-<div class="container">  
     <h1>All Ingredients</h1>
 
     @if(ViewBag.msg is not null) {
@@ -23,90 +13,93 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-
-        <div class="row gy-3 my-3 card-container">
-            @foreach(Ingredient i in Model) {
-                    <div class="col-sm-6 col-md-4 col-lg-3 card">
+        <div class="card-container">
+            <div class="row">
+                
+                @foreach(Ingredient i in Model) {
+                <div class="col-sm-6 col-md-3 col-lg-2">
+                    <div class="card">
                         <div class="card-text">
                             <span class="name">@i.Name</span>
-                            
-                                @if(i.Description is not null) {
-                                    @if(i.Description.Length > 200) { 
-                                        @(i.Description.Substring(0,150)+"... ");
-                                        <span class="description">
-                                        <a asp-controller="Ingredient" asp-action="Details" asp-route-id="@i.Id"> [read more]</a> </span>
-                                    } 
-                                    else{ 
-                                        <span class="description">@i.Description</span>
-                                        }
+                                
+                            @if(i.Description is not null) {
+                                @if(i.Description.Length > 200) { 
+                                    @(i.Description.Substring(0,150)+"... ");
+                                    <span class="description">
+                                    <a asp-controller="Ingredient" asp-action="Details" asp-route-id="@i.Id"> [read more]</a> </span>
+                                } 
+                            else{ 
+                                    <span class="description">@i.Description</span>
                                 }
-                        
-                               <span class="unit"> In @Translate.Units(i.Unit)</span>
+                            }
+                            
+                            <span class="unit"> In @Translate.Units(i.Unit)</span>
                         </div>
                         <div class="makro">
-                                        @if(@i.Calories is not null) { 
-                                            <div class="makro-element">
-                                                <span class="weight">@i.Calories</span>
-                                                <span class="element">Calories</span>
-                                                <span class="value">kcal</span> 
-                                            </div>
-                                            } 
-                                        @if(@i.Fats is not null) { 
-                                            <div class="makro-element">
-                                                <span class="weight">@i.Fats</span>
-                                                <span class="element">Fats</span>
-                                                <span class="value">g</span> 
-                                            </div>
-                                            }
-                                        @if(@i.Carbs is not null) { 
-                                            <div class="makro-element">
-                                                <span class="weight">@i.Carbs</span>
-                                                <span class="element">Carbs</span>
-                                                <span class="value">g</span> 
-                                            </div>
-                                            }
-                                        @if(@i.Proteins is not null) { 
-                                            <div class="makro-element">
-                                                <span class="weight">@i.Proteins</span>
-                                                <span class="element">Proteins</span>
-                                                <span class="value">g</span> 
-                                            </div>
-                                            }
-                                        @if(@i.Fiber is not null) { 
-                                            <div class="makro-element">
-                                                <span class="weight">@i.Fiber</span>
-                                                <span class="element">Fiber</span>
-                                                <span class="value">g</span> 
-                                            </div>
-                                            }
-                                        @if(@i.Salt is not null) {
-                                            <div class="makro-element">
-                                                <span class="weight">@i.Salt</span>
-                                                <span class="element">Salt</span>
-                                                <span class="value">g</span> 
-                                            </div>
-                                            }
-                                            
+                            @if(@i.Calories is not null) { 
+                                <div class="makro-element">
+                                    <span class="weight">@i.Calories</span>
+                                    <span class="element">Calories</span>
+                                    <span class="value">kcal</span> 
+                                </div>
+                            } 
+                            @if(@i.Fats is not null) { 
+                                <div class="makro-element">
+                                    <span class="weight">@i.Fats</span>
+                                    <span class="element">Fats</span>
+                                    <span class="value">g</span> 
+                                </div>
+                            }
+                            @if(@i.Carbs is not null) { 
+                                <div class="makro-element">
+                                    <span class="weight">@i.Carbs</span>
+                                    <span class="element">Carbs</span>
+                                    <span class="value">g</span> 
+                                </div>
+                            }
+                            @if(@i.Proteins is not null) { 
+                                <div class="makro-element">
+                                    <span class="weight">@i.Proteins</span>
+                                    <span class="element">Proteins</span>
+                                    <span class="value">g</span> 
+                                </div>
+                            }
+                            @if(@i.Fiber is not null) { 
+                                <div class="makro-element">
+                                    <span class="weight">@i.Fiber</span>
+                                    <span class="element">Fiber</span>
+                                    <span class="value">g</span> 
+                                </div>
+                            }
+                            @if(@i.Salt is not null) {
+                                <div class="makro-element">
+                                    <span class="weight">@i.Salt</span>
+                                    <span class="element">Salt</span>
+                                    <span class="value">g</span> 
+                                </div>
+                            }                 
                         </div>
                         <div class="options">
                             <div class="data">
-                                    <a class="option" asp-controller="Ingredient" asp-action="Details" asp-route-id="@i.Id"><i class="fa-solid fa-circle-info"></i></a>
-                            </div>
-                                    @if(User.IsInRole("admin")) {
-                            <div class="data">
-                                        <a class="option" asp-controller="Ingredient" asp-action="Edit" asp-route-id="@i.Id"><i class="fa-regular fa-pen-to-square"></i></a> 
-                            </div>
-                            <div class="data data-d">
-                                        <a class="option" asp-controller="Ingredient" asp-action="Delete" asp-route-id="@i.Id"><i class="fa-solid fa-trash"></i></a> 
-                            </div>
-                                    }
-                                
-                        </div>
-                    </div>
+                            <a class="option" asp-controller="Ingredient" asp-action="Details" asp-route-id="@i.Id"><i class="fa-solid fa-circle-info"></i></a>         
+                            </div>    
+
+                            @if(User.IsInRole("admin")) {
+
+                                <div class="data">
+                                    <a class="option" asp-controller="Ingredient" asp-action="Edit" asp-route-id="@i.Id"><i class="fa-regular fa-pen-to-square"></i></a> 
+                                </div>
+                                <div class="data data-d">
+                                            <a class="option" asp-controller="Ingredient" asp-action="Delete" asp-route-id="@i.Id"><i class="fa-solid fa-trash"></i></a> 
+                                </div>
+                            }                              
+                        </div>     
+                    </div>  
+                </div> 
+                    
                         
-                        
-            }
-            
-            
+                }  
+                
+            </div>  
         </div>
-</div>
+
