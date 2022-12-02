@@ -1,7 +1,7 @@
 @{
     ViewData["Title"] = "Profile";
     
-    var user = ViewBag.user;
+    User user = ViewBag.user;
 }
 
 <div class="text-center">
@@ -10,6 +10,17 @@
 <div>
     Email: @user.Email <br>
     @if(user.IsAdmin) { <text>Admin<br></text>}
+    else {
+        <text>
+            IsMan: @user.IsMan <br>
+            Weight: @user.Weight <br>
+            Heigth: @user.Heigth <br>
+            Target: @user.Target <br>
+            Activity: @user.Activity <br>
+            Age: policzyć trzeba <br>
+            Calories demand: @user.CaloriesDemand() <br>
+        </text>
+    }
     <a asp-controller="Account" asp-action="ChangePassword">Change password</a><br>
     <a asp-controller="Account" asp-action="DeleteAccount">Delete account</a>
 </div>

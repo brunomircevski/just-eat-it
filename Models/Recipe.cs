@@ -24,7 +24,7 @@ public class Recipe
     public List<RecipeIngredient> RecipeIngredients { get; set; }
 
     [Range(0,100000)]
-    public float ?CaloriesPerServing { get; set; }
+    public float? CaloriesPerServing { get; set; }
 
     [MaxLength(200)]
     public string ImageFileName { get; set; }
@@ -32,8 +32,10 @@ public class Recipe
     [NotMapped]
     public IFormFile Image { get; set; }
 
-    public bool Favorite { get; set; } = false;
+    //Nie wiem co to jest? to chyba użytkownik ma listę ulubionych
+    //public bool Favorite { get; set; } = false;
     
+    /* zakomentowałem bo błąd bo niedokończone
     public int Calculate_Calories()
     {
         int Calories = 0;
