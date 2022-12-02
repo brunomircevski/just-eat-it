@@ -32,14 +32,18 @@ public class Recipe
     [NotMapped]
     public IFormFile Image { get; set; }
 
-    /* 
-    public void Calculate_Calories()
+    public bool Favorite { get; set; } = false;
+    
+    public int Calculate_Calories()
     {
-        Calories = 0;
-        int i = 0;
+        int Calories = 0;
         foreach (Ingredient ing in Ingredients)
         {
-            Calories += ing.Calories_per_100_g * Weights[i] / 100;
+            if(ing.Unit == Units.g || ing.Unit==Units.ml)
+            {
+                Calories += ing.Calories * ing.RecipeIngredients.
+            }
+            
         }
     }
     */
