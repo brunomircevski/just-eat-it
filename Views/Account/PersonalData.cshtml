@@ -1,0 +1,66 @@
+@model User
+@{
+    ViewData["Title"] = "Personal data";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Your personal data</h1>
+</div>
+<div>
+    Email: @Model.Email
+
+    <form asp-controller="Account" asp-action="PersonalData" method="post">
+        <label asp-for="BirthDate"></label>
+        <input asp-for="BirthDate">
+        <span asp-validation-for="BirthDate" class="text-danger"></span><br>
+
+        <label asp-for="IsMan"></label>
+        <select asp-for="IsMan">
+            <option value="true">Men</option>
+            @if(Model.IsMan) { <option value="false">Woman</option>
+            } else { <option value="false" selected>Woman</option> }
+        </select>
+        <span asp-validation-for="IsMan" class="text-danger"></span><br>
+
+        <label asp-for="Target"></label>
+        <select asp-for="Target">
+            <option value="1">Maintain weight</option>
+            @if(Model.Target == 0.9) { <option value="0.9" selected >Lose weight</option>
+            } else { <option value="0.9">Lose weight</option> }
+            @if(Model.Target == 1.1) { <option value="1.1" selected >Gain weight</option>
+            } else { <option value="1.1">Gain weight</option> }
+        </select>
+        <span asp-validation-for="Target" class="text-danger"></span><br>
+
+        <label asp-for="Activity"></label>
+        <select asp-for="Activity">
+            <option value="1">lezacy</option>
+            @if(Model.Activity == 1.2) { <option value="1.2" selected >praca siedzaca</option>
+            } else { <option value="1.2">praca siedzaca</option> }
+            @if(Model.Activity == 1.4) { <option value="1.4" selected >siedzi + 2 treningi</option>
+            } else { <option value="1.4">siedzi + 2 treningi</option> }
+            @if(Model.Activity == 1.6) { <option value="1.6" selected >praca fizyczna + 3 treningi</option>
+            } else { <option value="1.6">praca fizyczna + 3 treningi</option> }
+            @if(Model.Activity == 1.8) { <option value="1.8" selected >praca fizyczna + 5</option>
+            } else { <option value="1.8">praca fizyczna + 5</option> }
+            @if(Model.Activity == 2) { <option value="2" selected >ciezka + 7</option>
+            } else { <option value="2">ciezka + 7</option> }
+        </select>
+        <span asp-validation-for="Activity" class="text-danger"></span><br>
+
+        <label asp-for="Weight"></label>
+        <input asp-for="Weight">
+        <span asp-validation-for="Weight" class="text-danger"></span><br>
+
+        <label asp-for="Heigth"></label>
+        <input asp-for="Heigth">
+        <span asp-validation-for="Heigth" class="text-danger"></span><br>
+
+        <input asp-for="Id" type="hidden" value="1">
+        <input asp-for="Email" type="hidden" value="example@email">
+        <input asp-for="PasswordHash" type="hidden" value="0">
+
+        <button type="submit">Save</button><br>
+
+    </form>
+</div>

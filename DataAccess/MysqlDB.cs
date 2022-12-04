@@ -17,6 +17,8 @@ public class MysqlDB : DbContext, IDB
         {
             entity.Property(e => e.IsAdmin)
                   .HasDefaultValue(false);
+            entity.Property(e => e.Salt)
+                  .IsRequired();
             entity.Property(e => e.RegistrationDate)
                   .HasDefaultValueSql("CURRENT_TIMESTAMP()");
         });

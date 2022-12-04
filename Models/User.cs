@@ -18,7 +18,6 @@ public class User
     [MaxLength(100)]
     public string PasswordHash { get; set; }
 
-    [Required]
     public byte[] Salt { get; set; }
 
     public bool IsAdmin { get; set; }
@@ -28,14 +27,19 @@ public class User
 
     public List<Category> PreferedCategories { get; set; }
 
+    [Display(Name = "Date of Birth")]
+    [Range(typeof(DateTime), "1/1/1900", "1/1/2010")]
+    [DataType(DataType.Date, ErrorMessage="Date only")]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime BirthDate { get; set; }
 
+    [Display(Name = "Sex")]
     public bool IsMan { get; set; }
 
     [Range(30, 250)]
     public float Weight { get; set; }
 
-    [Range(0.9, 1.1)]
+    [Range(0.89, 1.11)]
     public float Target { get; set; }
 
     [Range(100, 250)]
@@ -59,6 +63,10 @@ public class User
             CaloriesCalculate = (665 + 9.6 * Weight + 1.85 * Heigth - 4.7 * (DateTime.Now.Year - BirthDate.Year)) * Activity * Target;
         }
         return (int) CaloriesCalculate;
+    }
+
+    public int Age() {
+        return DateTime.Now.Year - BirthDate.Year;
     }
 
 }

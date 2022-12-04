@@ -11,15 +11,23 @@
     Email: @user.Email <br>
     @if(user.IsAdmin) { <text>Admin<br></text>}
     else {
-        <text>
-            IsMan: @user.IsMan <br>
-            Weight: @user.Weight <br>
-            Heigth: @user.Heigth <br>
-            Target: @user.Target <br>
-            Activity: @user.Activity <br>
-            Age: policzyć trzeba <br>
-            Calories demand: @user.CaloriesDemand() <br>
-        </text>
+        if(user.Weight != 0) {
+            <text>
+                @if(@user.IsMan) { <text>You're a man</text> }
+                else { <text>You're a woman</text> } <br>
+                Weight: @user.Weight <br>
+                Heigth: @user.Heigth <br>
+                Target: @user.Target <br>
+                Activity: @user.Activity <br>
+                Age: @user.Age() <br>
+                Calories demand: @user.CaloriesDemand() <br>
+            </text>
+            <a asp-controller="Account" asp-action="PersonalData">Change personal data</a><br>
+        } else {
+            <a asp-controller="Account" asp-action="PersonalData">Add personal data</a><br>
+        }
+
+        
     }
     <a asp-controller="Account" asp-action="ChangePassword">Change password</a><br>
     <a asp-controller="Account" asp-action="DeleteAccount">Delete account</a>

@@ -111,15 +111,56 @@ public class AccountController : Controller
     {
         int id = getUserId();
 
-        if(id == 0) return RedirectToAction("Index", "Home");
+        if(id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
 
         User u = DB.Users.Where(x => x.Id == id).FirstOrDefault();
 
-        if(u is null) return RedirectToAction("Index", "Home");
+        if(u is null) if(id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
 
         ViewBag.user = u;
 
         return View();
+    }
+
+    [Authorize(Roles = "user")]
+    public IActionResult PersonalData()
+    {
+        int id = getUserId();
+
+        if(id == 0) if(id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
+
+        User u = DB.Users.Where(x => x.Id == id).FirstOrDefault();
+
+        if(u is null) if(id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
+
+        return View(u);
+    }
+
+    [HttpPost]
+    [Authorize(Roles = "user")]
+    public IActionResult PersonalData(User user)
+    {
+        int id = getUserId();
+
+        if(id == 0) if(id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
+
+        User DBuser = DB.Users.Where(x => x.Id == id).FirstOrDefault();
+
+        if(DBuser is null) if(id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
+
+        if(ModelState.IsValid) {
+            DBuser.BirthDate = user.BirthDate;
+            DBuser.IsMan = user.IsMan;
+            DBuser.Target = user.Target;
+            DBuser.Activity = user.Activity;
+            DBuser.Weight = user.Weight;
+            DBuser.Heigth = user.Heigth;
+
+            DB.SaveChanges();
+            return RedirectToAction("Profile");
+        } 
+
+        return View(DBuser);
     }
 
     [Authorize]

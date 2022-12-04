@@ -31,7 +31,7 @@ namespace JEI.Migrations
 
                     b.HasIndex("RecipesId");
 
-                    b.ToTable("CategoryRecipe");
+                    b.ToTable("CategoryRecipe", (string)null);
                 });
 
             modelBuilder.Entity("CategoryUser", b =>
@@ -46,7 +46,7 @@ namespace JEI.Migrations
 
                     b.HasIndex("PreferingUsersId");
 
-                    b.ToTable("CategoryUser");
+                    b.ToTable("CategoryUser", (string)null);
                 });
 
             modelBuilder.Entity("JEI.Models.Category", b =>
@@ -65,7 +65,7 @@ namespace JEI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("JEI.Models.Ingredient", b =>
@@ -106,7 +106,7 @@ namespace JEI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ingredients");
+                    b.ToTable("Ingredients", (string)null);
                 });
 
             modelBuilder.Entity("JEI.Models.Recipe", b =>
@@ -137,7 +137,7 @@ namespace JEI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Recipes");
+                    b.ToTable("Recipes", (string)null);
                 });
 
             modelBuilder.Entity("JEI.Models.RecipeIngredient", b =>
@@ -155,7 +155,7 @@ namespace JEI.Migrations
 
                     b.HasIndex("IngredientId");
 
-                    b.ToTable("RecipeIngredient");
+                    b.ToTable("RecipeIngredient", (string)null);
                 });
 
             modelBuilder.Entity("JEI.Models.User", b =>
@@ -211,7 +211,7 @@ namespace JEI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("CategoryRecipe", b =>
