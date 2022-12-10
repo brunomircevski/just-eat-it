@@ -30,5 +30,5 @@
         
     }
     <a asp-controller="Account" asp-action="ChangePassword">Change password</a><br>
-    <a asp-controller="Account" asp-action="DeleteAccount">Delete account</a>
+    @if(!user.IsAdmin) { <a asp-controller="Account" asp-action="Delete">Delete account</a> }
 </div>

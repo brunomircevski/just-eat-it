@@ -31,7 +31,8 @@ public class AccountController : Controller
 
         User user = DB.Users.Where(x => x.Email == u.Email).FirstOrDefault();
 
-        if(user is null) {
+        if (user is null)
+        {
             ViewBag.msg = "Email not found. Register first.";
             return View();
         }
@@ -46,7 +47,7 @@ public class AccountController : Controller
         if (hash == user.PasswordHash)
         {
             string role = "user";
-            if(user.IsAdmin) role = "admin";
+            if (user.IsAdmin) role = "admin";
 
             user.LastLoginDate = DateTime.Now;
             DB.SaveChanges();
@@ -71,13 +72,13 @@ public class AccountController : Controller
     {
         if (!ModelState.IsValid) return View("Login");
 
-        if (DB.Users.Where(x => x.Email == u.Email).FirstOrDefault() is not null) 
+        if (DB.Users.Where(x => x.Email == u.Email).FirstOrDefault() is not null)
         {
             ViewBag.msg = "This email is alredy registered.";
             return View("Login");
         }
 
-        if (u.Password != u.Password2) 
+        if (u.Password != u.Password2)
         {
             ViewBag.msg = "Passwords are not the same";
             return View("Login");
@@ -107,15 +108,51 @@ public class AccountController : Controller
     }
 
     [Authorize]
+    public IActionResult ChangePassword()
+    {
+        return View();
+    }
+
+    [Authorize]
+    [HttpPost]
+    public IActionResult ChangePassword(LoginUser user)
+    {
+        if (!ModelState.IsValid) return View();
+
+        if (user.Password != user.Password2)
+        {
+            ViewBag.msg = "Passwords are not the same";
+            ViewBag.error = true;
+            return View();
+        }
+
+        User DBuser = DB.Users.Where(x => x.Id == getUserId()).FirstOrDefault();
+
+        if(DBuser is null) return RedirectToAction("Error", "Home", new { msg = "User not found in database." });
+
+        DBuser.PasswordHash = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+            password: user.Password,
+            salt: DBuser.Salt,
+            prf: KeyDerivationPrf.HMACSHA256,
+            iterationCount: 10000,
+            numBytesRequested: 256 / 8));
+
+        DB.SaveChanges();
+
+        ViewBag.msg = "Password changed successfully.";
+        return View();
+    }
+
+    [Authorize]
     public IActionResult Profile()
     {
         int id = getUserId();
 
-        if(id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
+        if (id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
 
         User u = DB.Users.Where(x => x.Id == id).FirstOrDefault();
 
-        if(u is null) if(id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
+        if (u is null) if (id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
 
         ViewBag.user = u;
 
@@ -127,11 +164,11 @@ public class AccountController : Controller
     {
         int id = getUserId();
 
-        if(id == 0) if(id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
+        if (id == 0) if (id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
 
         User u = DB.Users.Where(x => x.Id == id).FirstOrDefault();
 
-        if(u is null) if(id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
+        if (u is null) if (id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
 
         return View(u);
     }
@@ -142,13 +179,14 @@ public class AccountController : Controller
     {
         int id = getUserId();
 
-        if(id == 0) if(id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
+        if (id == 0) if (id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
 
         User DBuser = DB.Users.Where(x => x.Id == id).FirstOrDefault();
 
-        if(DBuser is null) if(id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
+        if (DBuser is null) if (id == 0) return RedirectToAction("Error", "Home", new { msg = "User not found." });
 
-        if(ModelState.IsValid) {
+        if (ModelState.IsValid)
+        {
             DBuser.BirthDate = user.BirthDate;
             DBuser.IsMan = user.IsMan;
             DBuser.Target = user.Target;
@@ -158,9 +196,23 @@ public class AccountController : Controller
 
             DB.SaveChanges();
             return RedirectToAction("Profile");
-        } 
+        }
 
         return View(DBuser);
+    }
+
+    [Authorize(Roles = "user")]
+    public async Task<IActionResult> Delete(bool? confirm) {
+        if(confirm == true) {
+            
+            DB.Remove(DB.Users.Where(x => x.Id == getUserId()).FirstOrDefault());
+            DB.SaveChanges();
+
+            await Logout();
+            return RedirectToAction("Index", "Home");
+        }
+
+        return View();
     }
 
     [Authorize]
