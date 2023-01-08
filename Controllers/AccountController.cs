@@ -128,7 +128,7 @@ public class AccountController : Controller
 
         User DBuser = DB.Users.Where(x => x.Id == getUserId()).FirstOrDefault();
 
-        if(DBuser is null) return RedirectToAction("Error", "Home", new { msg = "User not found in database." });
+        if (DBuser is null) return RedirectToAction("Error", "Home", new { msg = "User not found in database." });
 
         DBuser.PasswordHash = Convert.ToBase64String(KeyDerivation.Pbkdf2(
             password: user.Password,
@@ -202,9 +202,11 @@ public class AccountController : Controller
     }
 
     [Authorize(Roles = "user")]
-    public async Task<IActionResult> Delete(bool? confirm) {
-        if(confirm == true) {
-            
+    public async Task<IActionResult> Delete(bool? confirm)
+    {
+        if (confirm == true)
+        {
+
             DB.Remove(DB.Users.Where(x => x.Id == getUserId()).FirstOrDefault());
             DB.SaveChanges();
 

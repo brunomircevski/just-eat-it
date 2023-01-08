@@ -1,0 +1,37 @@
+@model Recipe
+@{
+    ViewData["Title"] = "Recipe details";
+    Recipe i = Model;
+}
+
+<div class="text-center">    
+    <h1 class="display-4">Recipe details</h1>
+
+    @if(ViewBag.msg is not null) {
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @ViewBag.msg
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <section>
+       
+        <article class="text-start">
+            <h4>@i.Name</h4>
+            <p>@i.Description</p>
+            <p>@i.Manual</p>
+
+            <img src="https://via.placeholder.com/300x200" alt="">
+
+            @if(@i.CaloriesPerServing is not null) { <text>Calories per serving: @i.CaloriesPerServing kcal<br></text>; } 
+
+            @if(User.IsInRole("admin")) {
+                <a asp-controller="Recipe" asp-action="Edit" asp-route-id="@i.Id">Edit</a> <text> | </text>
+                <a asp-controller="Recipe" asp-action="Delete" asp-route-id="@i.Id">Delete</a> 
+            }
+        </article>
+
+
+    </section>
+</div>

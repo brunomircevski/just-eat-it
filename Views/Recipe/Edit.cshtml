@@ -1,0 +1,44 @@
+@model Recipe
+@{
+    ViewData["Title"] = "Edit Recipe";
+}
+
+<div class="text-center">
+
+    @if(ViewBag.msg is not null) {
+        string alertClass = "success";
+        if(ViewBag.error == true) alertClass = "danger";
+
+        <div class="alert alert-@alertClass alert-dismissible fade show" role="alert">
+            @ViewBag.msg
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <h1 class="display-4">Edit Recipe</h1>
+    <form asp-controller="Recipe" asp-action="Edit" method="post">
+        <label asp-for="Name"></label>
+        <input asp-for="Name"><br>
+        <span asp-validation-for="Name" class="text-danger"></span> <br>
+
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description"></textarea><br>
+        <span asp-validation-for="Description" class="text-danger"></span> <br>
+
+        <label asp-for="Manual"></label>
+        <textarea asp-for="Manual"></textarea><br>
+        <span asp-validation-for="Manual" class="text-danger"></span> <br>
+
+        <label asp-for="CaloriesPerServing"></label>
+        <input asp-for="CaloriesPerServing" type="number" step="0.1"><br>
+        <span asp-validation-for="CaloriesPerServing" class="text-danger"></span> <br>
+
+        <h5>wybór kategorii</h5>
+
+        <h5>wybór składników</h5>
+
+        <input asp-for="Id" type="hidden">
+
+        <button type="submit">Submit</button><br>
+    </form>
+</div>

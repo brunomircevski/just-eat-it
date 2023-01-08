@@ -1,0 +1,61 @@
+@model List<Recipe>
+@{
+    ViewData["Title"] = "Recipies";
+}
+
+    <h1>All Recipies</h1>
+
+    @if(ViewBag.msg is not null) {
+        string alertClass = "success";
+        if(ViewBag.error == true) alertClass = "danger";
+
+        <div class="alert alert-@alertClass alert-dismissible fade show" role="alert">
+            @ViewBag.msg
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+        <div class="card-container">
+            <div class="row gy-3">
+                
+                @foreach(Recipe i in Model) {
+                <div class="col col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                    <div class="card">
+                         <div class="card-text">
+                            <span class="name">@i.Name</span>
+
+                            <img src="https://via.placeholder.com/300x200" alt="">
+                                
+                            @if(i.Description is not null) {
+                                @if(i.Description.Length > 200) { 
+                                    @(i.Description.Substring(0,150)+"... ");
+                                    <span class="description">
+                                    <a asp-controller="Recipe" asp-action="Details" asp-route-id="@i.Id"> [read more]</a> </span>
+                                } 
+                            else{ 
+                                    <span class="description">@i.Description</span>
+                                }
+                            }
+                        </div>
+                        <div class="options">
+                            <div class="data">
+                            <a class="option" asp-controller="Recipe" asp-action="Details" asp-route-id="@i.Id"><i class="fa-solid fa-circle-info"></i></a>         
+                            </div>    
+
+                            @if(User.IsInRole("admin")) {
+
+                                <div class="data">
+                                    <a class="option" asp-controller="Recipe" asp-action="Edit" asp-route-id="@i.Id"><i class="fa-regular fa-pen-to-square"></i></a> 
+                                </div>
+                                <div class="data data-d">
+                                            <a class="option" asp-controller="Recipe" asp-action="Delete" asp-route-id="@i.Id"><i class="fa-solid fa-trash"></i></a> 
+                                </div>
+                            }                              
+                        </div>   
+                    </div>  
+                </div>      
+                }  
+            </div>   
+        </div>
+
+
+
